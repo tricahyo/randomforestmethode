@@ -1,0 +1,20 @@
+#INPUT DATA
+dataku=read.delim("clipboard")
+#INSTALL PACKAGES
+install packages ("randomForest")
+install packages ("caret")
+#PANGGIL PACKGES
+library ("rndomForest")
+library ("caret")
+#MEMBAGI DATA MENJADI DUA BAGIAN
+sample=sample (1:nrow(dataku) 0.75*nrow(dataku),replace=TRUE)
+training=data.frame(dataku)[sample,]
+testing=data.frame(dataku)[sample,]
+#MEMBUAT MODEL RANDOM FOREST
+str(dataku)
+view(dataku)
+modelRF=randomForest(Keputusan~.,data=training)
+#MELAKUKAN PREDIKSI
+prediksi=predict(modelRF,testing)
+hasil=confusionMatrix(table(prediksi,testing$Keputusan))
+hasil
